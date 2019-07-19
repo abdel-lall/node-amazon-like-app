@@ -1,0 +1,23 @@
+{
+  "name": "amazon-like-app",
+  "version": "1.0.0",
+  "description": "",
+  "main": "bamazonCustomer.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/abdel-lall/node-amazon-like-app.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/abdel-lall/node-amazon-like-app/issues"
+  },
+  "homepage": "https://github.com/abdel-lall/node-amazon-like-app#readme",
+  "dependencies": {
+    "inquirer": "^6.5.0",
+    "mysql": "^2.17.1"
+  }
+}
