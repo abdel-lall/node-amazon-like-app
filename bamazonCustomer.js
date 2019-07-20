@@ -40,21 +40,22 @@ var connection = mysql.createConnection({
     .then(function(answer) {
         var qua = answer.quantity;
         
-      connection.query("SELECT stock_quantity,price FROM products WHERE ?", { product_name: proName }, function(err, res) {
+      connection.query("SELECT product_sales,stock_quantity,price FROM products WHERE ?", { product_name: proName }, function(err, res) {
         if (err) throw err;
-         var quaAvailable = res[0].stock_quantity;
+        var quaAvailable = res[0].stock_quantity;
         if (qua <= quaAvailable){
             quaAvailable = quaAvailable - qua;
             var unitPrice = res[0].price;
             var total = unitPrice * qua;
-            var sql = "UPDATE products SET stock_quantity = ? WHERE product_name = ? ";
-            var update =[quaAvailable,proName]
+            var prevsales = res[0].product_sales;
+            prevsales = total + prevsales;
+            var sql = "UPDATE products SET stock_quantity = ? ,product_sales = ? WHERE product_name = ? ";
+            var update =[quaAvailable,prevsales,proName]
             connection.query(sql, update, function (err, result) {
              if (err) throw err;
             console.log("your total is: ",total);
             console.log("            ");
             proId()
-
   });
         }else{
             insertDiffQua(proName);
